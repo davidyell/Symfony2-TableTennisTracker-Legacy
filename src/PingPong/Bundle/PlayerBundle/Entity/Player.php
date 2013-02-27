@@ -3,6 +3,9 @@
 namespace PingPong\Bundle\PlayerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\ManyToOne;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Players
@@ -25,6 +28,7 @@ class Player
      * @var string
      *
      * @ORM\Column(name="first_name", type="string", length=255, nullable=false)
+     * @Assert\NotBlank()
      */
     private $firstName;
 
@@ -39,6 +43,7 @@ class Player
      * @var string
      *
      * @ORM\Column(name="last_name", type="string", length=255, nullable=false)
+     * @Assert\NotBlank()
      */
     private $lastName;
 
@@ -46,6 +51,11 @@ class Player
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255, nullable=true)
+     * @Assert\NotBlank()
+     * @Assert\Email(
+     *     message = "The email '{{ value }}' is not a valid email.",
+     *     checkMX = true
+     * )
      */
     private $email;
 
@@ -69,6 +79,14 @@ class Player
      * @ORM\Column(name="department_id", type="integer", nullable=true)
      */
     private $departmentId;
+    
+    /**
+     * @var string
+     * 
+     * @ORM\ManyToOne(targetEntity="Department", inversedBy="players")
+     * @ORM\JoinColumn(name="department_id", referencedColumnName="id")
+     */
+    protected $department;
 
     /**
      * @var \DateTime
@@ -310,5 +328,28 @@ class Player
     public function getModified()
     {
         return $this->modified;
+    }
+
+    /**
+     * Set department
+     *
+     * @param \PingPong\Bundle\PlayerBundle\Entity\Department $department
+     * @return Player
+     */
+    public function setDepartment(\PingPong\Bundle\PlayerBundle\Entity\Department $department = null)
+    {
+        $this->department = $department;
+    
+        return $this;
+    }
+
+    /**
+     * Get department
+     *
+     * @return \PingPong\Bundle\PlayerBundle\Entity\Department 
+     */
+    public function getDepartment()
+    {
+        return $this->department;
     }
 }
