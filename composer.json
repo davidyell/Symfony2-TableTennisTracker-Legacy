@@ -19,7 +19,7 @@
         "jms/security-extra-bundle": "1.2.*",
         "jms/di-extra-bundle": "1.1.*",
         "kriswallsmith/assetic": "1.1.*@dev",
-        "leafo/scssphp": "0.0.4"
+        "ornicar/gravatar-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
@@ -38,6 +38,7 @@
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",
+        "symfony-assets-install": "symlink",
         "branch-alias": {
             "dev-master": "2.1-dev"
         }
