@@ -1,0 +1,16 @@
+{% extends 'PingPongPlayerBundle::layout.html.twig' %}
+
+{% block content %}
+    <table summary="list_of_players" class="table-striped table-bordered">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+        </tr>
+        {% for player in playerList %}
+            <tr>
+                <td>{{ player.id }}</td>
+                <td>{{ player.name }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

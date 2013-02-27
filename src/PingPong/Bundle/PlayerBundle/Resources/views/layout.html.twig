@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <title>
+            {% block title %}{% endblock %}
+        </title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('bundles/pingpongplayer/bootstrap/css/bootstrap.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('bundles/pingpongplayer/bootstrap/css/bootstrap-responsive.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('bundles/pingpongplayer/css/style.css') }}">
+        {% endblock %}
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <div class="container-fluid">
+            <header class="row-fluid">
+                <div class="span12">
+                    <h1>Table Tennis Tracker</h1>
+                    {% include "PingPongPlayerBundle:elements:navigation.html.twig" %}
+                </div>
+            </header>
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="content">
+                        {% block content %}{% endblock %}
+                    </div>
+                </div>
+            </div>
+            <footer class="row-fluid">
+                <div class="span12">
+
+                </div>
+            </footer>
+        </div>
+
+        <div id="loading" style="display:none">
+            Loading&hellip;
+        </div>
+
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

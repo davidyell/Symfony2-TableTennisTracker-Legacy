@@ -1,0 +1,246 @@
+/*
+Document   : style
+Created on : Dec 19, 2012, 3:48:40 PM
+Author     : david
+Description:
+    Purpose of the stylesheet follows.
+*/
+
+@import url(http://fonts.googleapis.com/css?family=Telex);
+
+/** Palette **/
+$ttBlue: #2E3F73;
+$ttGreen: #088B29;
+$fg: #fff;
+
+$contentBg: #eee;
+$contentText: #333;
+
+$teamRed: #a50000;
+$teamBlue: #004ea3;
+
+/** Mixins **/
+@mixin cardBg{
+    background: #fefcea; /* Old browsers */
+    background: -moz-linear-gradient(top,  #fefcea 0%, #efdf77 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fefcea), color-stop(100%,#efdf77)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #fefcea 0%,#efdf77 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #fefcea 0%,#efdf77 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #fefcea 0%,#efdf77 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #fefcea 0%,#efdf77 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', endColorstr='#efdf77',GradientType=0 ); /* IE6-9 */
+}
+
+/** Standard styles **/
+body{
+    background-color: $ttBlue;
+    color: $fg;
+    font-family: Telex, Arial, sans-serif;
+}
+a.logo{
+    color: $fg;
+    text-decoration: none;
+    h1{
+        padding-left: 40px;
+        background: url(../img/table-tennis.png) 0 4px no-repeat;
+        font-size: 30px;
+    }
+}
+legend{
+    color: $contentText;
+}
+div.content{
+    padding: 5px;
+    background-color: $contentBg;
+    color: $contentText;
+    border: 1px solid darken($contentBg, 30%);
+    border-radius: 4px;
+}
+.buttons{
+    a{
+        float: left;
+        clear: left;
+        margin: 10px auto;
+    }
+}
+.undefeated, .winless{
+    display: block;
+    margin: 5px 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+#loading{
+    position: fixed;
+    top: 50%;
+    left: 48%;
+    padding: 15px 20px;
+    background: rgba(0,0,0,0.4);
+    border-radius: 5px;
+}
+
+/** Score card **/
+.scores{
+    clear: both;
+    .input{
+        float: left;
+    }
+}
+#scorecard{
+    /*width: 520px;*/
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    @include cardBg;
+    table.result-table{
+        /*width: 500px;*/
+        margin: 10px;
+        td{
+            font-size: 16px;
+            padding: 10px;
+            text-align: center;
+        }
+        tr.scores td{
+            padding: 20px 10px;
+            font-size: 26px;
+            font-weight: bold;
+        }
+    }
+}
+
+/** Form styles and Add match **/
+div.input{
+    margin: 10px 0;
+    &.required label:after{
+        content: "*";
+    }
+    &.error{
+        padding: 10px;
+        color: #B94A48;
+        background-color: #F2DEDE;
+        border: 1px solid #EED3D7;
+        border-radius: 4px;
+    }
+}
+
+.one, 
+.two, 
+.three, 
+.four, 
+.team1, 
+.team2{
+    float: left;
+    padding: 5px;
+    border-radius: 4px;
+}
+.three{
+    clear: left;
+}
+
+div.input.one, 
+div.input.three, 
+div.input.team1{
+    background-color: lighten($teamRed,35%);
+    margin-bottom: 5px;
+}
+label[for='MatchesPlayer1Score'], 
+.one label, 
+.three label{
+    color: $teamRed;
+}
+div.input.two, 
+div.input.four, 
+div.input.team2{
+    background-color: lighten($teamBlue,35%);
+}
+label[for='MatchesPlayer2Score'], 
+.two label, 
+.four label{
+    color: $teamBlue;
+}
+
+/** Tables **/
+#rankings, 
+#department-ranks{
+    th{
+        cursor: pointer;
+        i{
+            display: none;
+        }
+        &.sorting-asc, 
+        &.sorting-desc{
+            background-color: #ccc;
+        }
+        &.sorting-asc i.icon-arrow-up{
+            display: inline-block;
+        }
+        &.sorting-desc i.icon-arrow-down{
+            display: inline-block
+        }
+    }
+}
+td.result{
+    span.label a{
+        color: #fff;
+    }
+}
+
+/** Players::compare() **/
+div.player1, 
+div.player2{
+    float: left;
+}
+table.comparison{
+    td{
+        text-align: center;
+    }
+    h4{
+        margin: 0;
+    }
+}
+.gravatar, .facebookavatar{
+    margin-right: 10px;
+}
+td .gravatar{
+    margin-right: 5px;
+}
+
+/** Graphs **/
+#rating_by_time{
+    margin-top: 10px;
+}
+
+/** Tournaments **/
+#draw{
+    margin: 10px 0;
+}
+div.tournament{
+    .input.select{
+        width: 220px;
+    }
+    select{
+        height: 200px;
+    }
+    .select.players, .select.selected_players{
+        float: left;
+    }
+    .buttons{
+        float: left;
+        margin: 100px 10px 0;
+    }
+    .match{
+        width: 340px;
+        margin: 10px;
+        padding: 10px;
+        float: left;
+        background-color: darken($contentBg, 15%);
+        border-radius: 4px;
+        form{
+            margin-bottom: 0;
+            .scores div.input{
+                margin-right: 20px;
+            }
+        }
+        & input{
+            width: 100px;
+        }
+    }
+}

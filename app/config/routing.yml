@@ -1,3 +1,8 @@
+ping_pong_player:
+    resource: "@PingPongPlayerBundle/Controller"
+    type: annotation
+    prefix: /players
+
 # Internal routing configuration to handle ESI
 # ****** WARNING ******
 # This route should be enabled with caution as it can open a security vulnerability
