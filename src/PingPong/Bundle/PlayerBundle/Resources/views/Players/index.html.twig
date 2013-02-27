@@ -3,13 +3,26 @@
 {% block content %}
     <table summary="list_of_players" class="table-striped table-bordered">
         <tr>
-            <th>Id</th>
+            <th>Avatar</th>
             <th>Name</th>
+            <th>Department</th>
         </tr>
         {% for player in playerList %}
             <tr>
-                <td>{{ player.id }}</td>
-                <td>{{ player.name }}</td>
+                <td>
+                    {% if player.facebookId != '' %}
+                        <span class='facebookavatar'>FB</span>
+                    {% else %}
+                        <span class='gravatar'><img src="{{ gravatar(player.email, 24) }}"></span>
+                    {% endif %}
+                </td>
+                <td>
+                    {{ player.firstName }}
+                        {% if player.nickname != '' %}
+                            "{{ player.nickname }}"
+                        {% endif %}
+                    {{ player.lastName }}
+                </td>
             </tr>
         {% endfor %}
     </table>
