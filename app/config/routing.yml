@@ -1,6 +1,9 @@
-ping_pong_player:
-    resource: "@PingPongPlayerBundle/Controller"
-    type: annotation
+_welcome:
+    pattern: /
+    defaults: { _controller: PingPongPlayerBundle:Static:home }
+    
+ping_pong_bundle:
+    resource: "@PingPongPlayerBundle/Resources/config/routing.yml"
 
 # Internal routing configuration to handle ESI
 # ****** WARNING ******
