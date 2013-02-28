@@ -1,0 +1,9 @@
+{% extends 'PingPongPlayerBundle::layout.html.twig' %}
+
+{% block content %}
+    <h2>Add new player</h2>
+    <form action="{{ path('players_add') }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <input type="submit" />
+    </form>
+{% endblock %}

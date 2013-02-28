@@ -1,5 +1,19 @@
 {% extends 'PingPongPlayerBundle::layout.html.twig' %}
 
 {% block content %}
-    <h2>View department</h2>
+    <h2>{{ department.name }} department</h2>
+    <ul>
+        {% for player in department.players %}
+            <li>
+                {% include 'PingPongPlayerBundle:Elements:player-avatar.html.twig' with {'player': player} %}
+                <a href="{{ path('players_edit', {'id': player.id}) }}" title="Edit {{ player.firstName }}">
+                    {{ player.firstName }}
+                        {% if player.nickname != '' %}
+                            "{{ player.nickname }}"
+                        {% endif %}
+                    {{ player.lastName }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
 {% endblock %}

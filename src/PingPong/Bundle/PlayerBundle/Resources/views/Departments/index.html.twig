@@ -2,4 +2,16 @@
 
 {% block content %}
     <h2>Departments</h2>
+    <table summary="departments" class="table table-bordered table-striped">
+        <tr>
+            <th>Name</th>
+        </tr>
+        <tr>
+            {% for department in departments %}
+                <tr>
+                    <td><a href="{{ path('departments_view', {'id': department.id}) }}" title="{{ department.name }}">{{ department.name }}</a></td>
+                </tr>
+            {% endfor %}
+        </tr>
+    </table>
 {% endblock %}

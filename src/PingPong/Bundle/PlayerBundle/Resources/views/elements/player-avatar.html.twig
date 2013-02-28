@@ -1,0 +1,5 @@
+{% if player.facebookId != '' %}
+    <span class='facebookavatar'><img src="http://placehold.it/24x24"></span>
+{% else %}
+    <span class='gravatar'><img src="{{ gravatar(player.email, 24) }}"></span>
+{% endif %}

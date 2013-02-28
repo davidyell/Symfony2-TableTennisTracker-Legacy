@@ -4,6 +4,7 @@
     <h2>Edit player</h2>
     <form action="{{ path('players_edit', {'id': player.id}) }}" method="post" {{ form_enctype(form) }}>
         {{ form_widget(form) }}
-        <input type="submit" />
+        <input type="submit" value="Save" class="btn">
     </form>
+    <a href="{{ path('players_delete', {'id': player.id}) }}" title="Delete" class="btn btn-danger btn-small" onclick="return confirm('Are you sure?\nThis cannot be undone.');">Delete this player</a>
 {% endblock %}

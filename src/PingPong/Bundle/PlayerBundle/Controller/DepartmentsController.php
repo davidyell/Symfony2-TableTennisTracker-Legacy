@@ -19,7 +19,12 @@ class DepartmentsController extends Controller
      */
     public function indexAction()
     {
-        return array();
+        $departments = $this->getDoctrine()
+                           ->getRepository('PingPongPlayerBundle:Department')
+                           ->findAll();
+        return array(
+            'departments' => $departments
+        );
     }
     
     /**
@@ -30,6 +35,11 @@ class DepartmentsController extends Controller
      */
     public function viewAction($id)
     {
-        return array();
+        $department = $this->getDoctrine()
+                           ->getRepository('PingPongPlayerBundle:Department')
+                           ->findOneBy(array('id' => $id));
+        return array(
+            'department' => $department
+        );
     }
 }

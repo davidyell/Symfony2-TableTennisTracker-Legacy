@@ -74,15 +74,8 @@ class Player
     private $performanceRating;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="department_id", type="integer", nullable=true)
-     */
-    private $departmentId;
-    
-    /**
      * @var string
-     * 
+     *
      * @ORM\ManyToOne(targetEntity="Department", inversedBy="players")
      * @ORM\JoinColumn(name="department_id", referencedColumnName="id")
      */
@@ -101,8 +94,18 @@ class Player
      * @ORM\Column(name="modified", type="datetime", nullable=true)
      */
     private $modified;
-
-
+    
+    /**
+     * Constructor to set default values for this Entity
+     */
+    public function __construct()
+    {
+        $this->performanceRating = 1500;
+        
+        $now = new \DateTime();
+        $this->created = $now;
+        $this->modified = $now;
+    }
 
     /**
      * Get id
@@ -259,30 +262,6 @@ class Player
     }
 
     /**
-     * Set departmentId
-     *
-     * @param integer $departmentId
-     *
-     * @return Players
-     */
-    public function setDepartmentId($departmentId)
-    {
-        $this->departmentId = $departmentId;
-
-        return $this;
-    }
-
-    /**
-     * Get departmentId
-     *
-     * @return integer
-     */
-    public function getDepartmentId()
-    {
-        return $this->departmentId;
-    }
-
-    /**
      * Set created
      *
      * @param \DateTime $created
@@ -334,19 +313,20 @@ class Player
      * Set department
      *
      * @param \PingPong\Bundle\PlayerBundle\Entity\Department $department
+     * 
      * @return Player
      */
     public function setDepartment(\PingPong\Bundle\PlayerBundle\Entity\Department $department = null)
     {
         $this->department = $department;
-    
+
         return $this;
     }
 
     /**
      * Get department
      *
-     * @return \PingPong\Bundle\PlayerBundle\Entity\Department 
+     * @return \PingPong\Bundle\PlayerBundle\Entity\Department
      */
     public function getDepartment()
     {
