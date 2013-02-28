@@ -58,6 +58,7 @@ class Department
     {
         $this->players = new ArrayCollection();
         
+        // TODO: Unhack this
         $now = new \DateTime();
         $this->created = $now;
         $this->modified = $now;
@@ -150,7 +151,7 @@ class Department
      */
     public function addPlayer(\PingPong\Bundle\PlayerBundle\Entity\Player $players)
     {
-        $this->players[] = $players;
+        $this->players->add($players);
     
         return $this;
     }
