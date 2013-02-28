@@ -1,0 +1,26 @@
+players_index:
+  pattern: /players
+  defaults: { _controller: PingPongPlayerBundle:Players:index }
+players_add:
+  pattern: /players/add
+  defaults: { _controller: PingPongPlayerBundle:Players:add }
+players_edit:
+  pattern: /players/edit/{id}
+  defaults: { _controller: PingPongPlayerBundle:Players:edit }
+players_delete:
+  pattern: /players/delete/{id}
+  defaults: { _controller: PingPongPlayerBundle:Players:delete }
+
+departments:
+  pattern: /departments
+  defaults: { _controller: PingPongPlayerBundle:Departments:index }
+departments_view:
+  pattern: /departments/view/{id}
+  defaults: { _controller: PingPongPlayerBundle:Departments:view }
+departments_edit:
+  pattern: /departments/edit/{id}
+  defaults: { _controller: PingPongPlayerBundle:Departments:view }
+  
+rankings:
+  pattern: /players/rankings
+  defaults: { _controller: PingPongPlayerBundle:Rankings:playerRankings }
