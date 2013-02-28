@@ -25,11 +25,11 @@ class PlayersController extends Controller
      */
     public function indexAction()
     {
-        $playerRepo = $this->getDoctrine()
-                           ->getRepository('PingPongPlayerBundle:Player');
-        $players = $playerRepo->findAll();
+        $players = $this->getDoctrine()
+                           ->getRepository('PingPongPlayerBundle:Player')
+                           ->findAll();
 
-        return array('playerList' => $players);
+        return array('players' => $players);
     }
 
     /**

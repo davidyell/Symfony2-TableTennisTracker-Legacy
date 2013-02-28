@@ -9,7 +9,7 @@
             <th>Name</th>
             <th>Department</th>
         </tr>
-        {% for player in playerList %}
+        {% for player in players %}
             <tr>
                 <td>
                     {% include 'PingPongPlayerBundle:Elements:player-avatar.html.twig' with {'player': player} %}
