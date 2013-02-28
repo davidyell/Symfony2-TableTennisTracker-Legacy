@@ -1,0 +1,12 @@
+{% extends 'PingPongPlayerBundle::layout.html.twig' %}
+
+{% block content %}
+    <h1>Uk Web Media Ping-Pong Tracker</h1>
+
+    <div class="buttons">
+        <a href="{{ path('players_index') }}" class="btn btn-large btn-inverse">Player list</a>
+        <div class="clearfix"><!-- blank --></div>
+    </div>
+
+    <p>Track your progress against the rest of the company by <?php echo $this->Html->link('logging your matches', array('controller'=>'matches','action'=>'add'));?> and track your performance throughout the season.</p>
+{% endblock %}
