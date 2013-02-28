@@ -94,20 +94,30 @@ class Player
      * @ORM\Column(name="modified", type="datetime", nullable=true)
      */
     private $modified;
-    
+
     /**
      * Constructor to set default values for this Entity
      */
     public function __construct()
     {
         $this->performanceRating = 1500;
-        
+
         $now = new \DateTime();
         $this->created = $now;
         $this->modified = $now;
     }
-
+    
     /**
+     * Will format all entity field types to FirstName Surname initial
+     * 
+     * @return string
+     */
+    public function __toString()
+    {
+        return sprintf('%s %s', $this->firstName, substr($this->lastName, 0, 1));
+    }
+
+        /**
      * Get id
      *
      * @return integer
@@ -313,7 +323,7 @@ class Player
      * Set department
      *
      * @param \PingPong\Bundle\PlayerBundle\Entity\Department $department
-     * 
+     *
      * @return Player
      */
     public function setDepartment(\PingPong\Bundle\PlayerBundle\Entity\Department $department = null)

@@ -16,4 +16,5 @@
             </li>
         {% endfor %}
     </ul>
+    <a href="{{ path('departments_edit', {'id': department.id}) }}" title="Edit {{ department.name }}" class="btn">Edit</a>
 {% endblock %}

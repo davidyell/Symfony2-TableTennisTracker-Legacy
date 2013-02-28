@@ -6,17 +6,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
-use PingPong\Bundle\PlayerBundle\Form\Type\PlayerType;
+use PingPong\Bundle\PlayerBundle\Form\PlayerType;
 
 use PingPong\Bundle\PlayerBundle\Entity\Player;
 
 /**
  * PlayersController
+ * 
+ * @Route("/players")
  */
 class PlayersController extends Controller
 {
     /**
-     * @Route("/players", name="players_index")
+     * @Route("/", name="players_index")
      * @Template()
      *
      * @return array Array of players
@@ -33,7 +35,7 @@ class PlayersController extends Controller
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      * 
-     * @Route("/players/add", name="players_add")
+     * @Route("/add", name="players_add")
      * @Template()
      *
      * @return mixed Array or Redirect
@@ -62,7 +64,7 @@ class PlayersController extends Controller
      * @param int $id The id of the record
      * @param Request $request The form submission request
      *
-     * @Route("/players/edit/{id}", name="players_edit")
+     * @Route("/edit/{id}", name="players_edit")
      * @Template()
      *
      * @return mixed An array or a redirect url
@@ -98,7 +100,7 @@ class PlayersController extends Controller
      * 
      * @param int $id
      * 
-     * @Route("/players/delete/{id}", name="players_delete")
+     * @Route("/delete/{id}", name="players_delete")
      * @Template()
      * 
      * @return string A redirection url

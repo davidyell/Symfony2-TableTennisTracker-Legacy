@@ -5,10 +5,11 @@
  * @author David Yell <neon1024@gmail.com>
  */
 
-namespace PingPong\Bundle\PlayerBundle\Form\Type;
+namespace PingPong\Bundle\PlayerBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * PlayerType Class
@@ -60,7 +61,7 @@ class PlayerType extends AbstractType
      *
      * @param \Symfony\Component\OptionsResolver\OptionsResolverInterface $resolver
      */
-    public function setDefaultOptions(\Symfony\Component\OptionsResolver\OptionsResolverInterface $resolver)
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         parent::setDefaultOptions($resolver);
 

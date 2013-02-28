@@ -1,0 +1,9 @@
+{% extends 'PingPongPlayerBundle::layout.html.twig' %}
+
+{% block content %}
+    <h2>Edit department</h2>
+    <form action="{{ path('departments_edit', {'id': department.id}) }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <input type="submit" value="Save" class="btn">
+    </form>
+{% endblock %}

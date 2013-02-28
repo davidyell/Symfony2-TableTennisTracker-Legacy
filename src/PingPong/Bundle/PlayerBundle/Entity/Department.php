@@ -57,6 +57,10 @@ class Department
     public function __construct()
     {
         $this->players = new ArrayCollection();
+        
+        $now = new \DateTime();
+        $this->created = $now;
+        $this->modified = $now;
     }
 
     /**
