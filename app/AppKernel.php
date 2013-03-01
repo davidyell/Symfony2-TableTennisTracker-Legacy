@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
             new PingPong\Bundle\PlayerBundle\PingPongPlayerBundle(),
+            new PingPong\Bundle\MatchesBundle\PingPongMatchesBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

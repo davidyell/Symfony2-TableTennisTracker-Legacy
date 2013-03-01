@@ -33,8 +33,6 @@ class PlayersController extends Controller
     }
 
     /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
      * @Route("/add", name="players_add")
      * @Template()
      *
@@ -61,7 +59,7 @@ class PlayersController extends Controller
     }
 
     /**
-     * @param int     $id      The id of the record
+     * @param int $id The id of the record
      *
      * @Route("/edit/{id}", name="players_edit")
      * @Template()
