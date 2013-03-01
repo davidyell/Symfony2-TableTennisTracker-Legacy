@@ -3,6 +3,8 @@
 namespace PingPong\Bundle\MatchesBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\ManyToOne;
+use Doctrine\ORM\Mapping\JoinTable;
 
 /**
  * Results
@@ -10,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="matches_players")
  * @ORM\Entity
  */
-class Results
+class Result
 {
     /**
      * @var integer
@@ -22,18 +24,20 @@ class Results
     private $id;
 
     /**
-     * @var integer
+     * @var array
      *
-     * @ORM\Column(name="match_id", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Match", inversedBy="results")
+     * @ORM\JoinColumn(name="match_id", referencedColumnName="id")
      */
-    private $matchId;
+    private $match;
 
     /**
-     * @var integer
+     * @var array
      *
-     * @ORM\Column(name="player_id", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="\PingPong\Bundle\PlayerBundle\Entity\Player")
+     * @ORM\JoinColumn(name="player_id", referencedColumnName="id")
      */
-    private $playerId;
+    private $players;
 
     /**
      * @var integer
@@ -97,30 +101,6 @@ class Results
     public function getMatchId()
     {
         return $this->matchId;
-    }
-
-    /**
-     * Set playerId
-     *
-     * @param integer $playerId
-     *
-     * @return MatchesPlayers
-     */
-    public function setPlayerId($playerId)
-    {
-        $this->playerId = $playerId;
-
-        return $this;
-    }
-
-    /**
-     * Get playerId
-     *
-     * @return integer
-     */
-    public function getPlayerId()
-    {
-        return $this->playerId;
     }
 
     /**
@@ -217,5 +197,77 @@ class Results
     public function getModified()
     {
         return $this->modified;
+    }
+
+    /**
+     * Set matches
+     *
+     * @param \PingPong\Bundle\MatchesBundle\Entity\Match $matches
+     *
+     * @return Result
+     */
+    public function setMatches(\PingPong\Bundle\MatchesBundle\Entity\Match $matches = null)
+    {
+        $this->matches = $matches;
+
+        return $this;
+    }
+
+    /**
+     * Get matches
+     *
+     * @return \PingPong\Bundle\MatchesBundle\Entity\Match
+     */
+    public function getMatches()
+    {
+        return $this->matches;
+    }
+
+    /**
+     * Set players
+     *
+     * @param \PingPong\Bundle\MatchesBundle\Entity\Player $players
+     *
+     * @return Result
+     */
+    public function setPlayers(\PingPong\Bundle\MatchesBundle\Entity\Player $players = null)
+    {
+        $this->players = $players;
+
+        return $this;
+    }
+
+    /**
+     * Get players
+     *
+     * @return \PingPong\Bundle\MatchesBundle\Entity\Player
+     */
+    public function getPlayers()
+    {
+        return $this->players;
+    }
+
+    /**
+     * Set match
+     *
+     * @param \PingPong\Bundle\MatchesBundle\Entity\Match $match
+     *
+     * @return Result
+     */
+    public function setMatch(\PingPong\Bundle\MatchesBundle\Entity\Match $match = null)
+    {
+        $this->match = $match;
+
+        return $this;
+    }
+
+    /**
+     * Get match
+     *
+     * @return \PingPong\Bundle\MatchesBundle\Entity\Match
+     */
+    public function getMatch()
+    {
+        return $this->match;
     }
 }

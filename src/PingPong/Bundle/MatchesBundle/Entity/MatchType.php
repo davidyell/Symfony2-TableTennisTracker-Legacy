@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="match_types")
  * @ORM\Entity
  */
-class MatchTypes
+class MatchType
 {
     /**
      * @var integer

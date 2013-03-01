@@ -1,4 +1,9 @@
 <?php
+/**
+ * Match result form
+ *
+ * @author David Yell <neon1024@gmail.com>
+ */
 
 namespace PingPong\Bundle\MatchesBundle\Form;
 
@@ -7,47 +12,46 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * Form class for capturing Matches
+ * Create a form to capture match results
  */
-class MatchType extends AbstractType
+class ResultType extends AbstractType
 {
     /**
-     * Create the form fields
+     * Create the form
      *
      * @param \Symfony\Component\Form\FormBuilderInterface $builder
-     * @param array $options
+     * @param array                                        $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('matchType', 'entity', array(
-                'class' => 'PingPongMatchesBundle:MatchType',
-                'property' => 'name'
-            )
-        )
-        ->add('result', 'collection', array('type' => new ResultType()))
-        ->add('notes');
+        parent::buildForm($builder, $options);
+
+        $builder->add('players')
+                ->add('score');
     }
 
     /**
-     * Set the default data class for this form
+     * Set the default class for this form
      *
      * @param \Symfony\Component\OptionsResolver\OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
+        parent::setDefaultOptions($resolver);
+
         $resolver->setDefaults(array(
-            'data_class' => 'PingPong\Bundle\MatchesBundle\Entity\Match',
-            'cascade_validation' => true
+            'data_class' => 'PingPong\Bundle\MatchesBundle\Entity\Result'
         ));
     }
 
     /**
-     * Get the name of this form
+     * Return the name of the form
      *
      * @return string
      */
     public function getName()
     {
-        return 'pingpong_bundle_matchbundle_matchtype';
+        return 'pingpong_bundle_matchbundle_resulttype';
     }
+
 }

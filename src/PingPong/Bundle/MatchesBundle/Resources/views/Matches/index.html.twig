@@ -1,0 +1,30 @@
+{% extends 'PingPongPlayerBundle::layout.html.twig' %}
+
+{% block content %}
+    <h2>Match list</h2>
+
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>Match type</th>
+            <th>Players</th>
+            <th>Played</th>
+            <th>Notes</th>
+            <th>Actions</th>
+        </tr>
+        <tr>
+            {% for match in matches %}
+            <tr>
+                <td>{{ match.matchType.name }}</td>
+                <td>
+                    {% for result in match.result %}
+                        {{ result.players }}
+                    {% endfor %}
+                </td>
+                <td>{{ match.created|date('Y-m-d H:i') }}</td>
+                <td>{{ match.notes }}</td>
+                <td><a href="#" class="btn">View</a></td>
+            </tr>
+            {% endfor %}
+        </tr>
+    </table>
+{% endblock %}

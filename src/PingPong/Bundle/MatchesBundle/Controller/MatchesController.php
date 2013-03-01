@@ -10,6 +10,10 @@ namespace PingPong\Bundle\MatchesBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use PingPong\Bundle\MatchesBundle\Entity\Match;
+use PingPong\Bundle\MatchesBundle\Entity\Result;
+use PingPong\Bundle\MatchesBundle\Form\MatchType;
+use PingPong\Bundle\MatchesBundle\Form\ResultType;
 
 /**
  * MatchesController
@@ -19,6 +23,27 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class MatchesController extends Controller
 {
     /**
+     * @Route("/", name="matches")
+     * @Template()
+     *
+     * @return array
+     */
+    public function indexAction()
+    {
+        $matches = $this->getDoctrine()
+                        ->getRepository('PingPongMatchesBundle:Match')
+                        ->findBy(array(), array(), 20);
+
+//        echo "<pre>";
+//        \Doctrine\Common\Util\Debug::dump($matches);
+//        echo "</pre>";
+
+        return array(
+            'matches' => $matches
+        );
+    }
+
+    /**
      * @Route("/add", name="matches_add")
      * @Template()
      *
@@ -26,7 +51,11 @@ class MatchesController extends Controller
      */
     public function addAction()
     {
-        
-        return array();
+        $match = new Match();
+        $matchForm = $this->createForm(new MatchType(), $match);
+
+        return array(
+            'matchForm' => $matchForm->createView(),
+        );
     }
 }

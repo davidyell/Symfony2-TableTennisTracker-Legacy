@@ -3,6 +3,7 @@
 namespace PingPong\Bundle\MatchesBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Matches
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="matches")
  * @ORM\Entity
  */
-class Matches
+class Match
 {
     /**
      * @var integer
@@ -24,9 +25,17 @@ class Matches
     /**
      * @var integer
      *
-     * @ORM\Column(name="match_type_id", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="MatchType")
+     * @ORM\JoinColumn(name="match_type_id", referencedColumnName="id")
      */
-    private $matchTypeId;
+    private $matchType;
+
+    /**
+     * @var array
+     *
+     * @ORM\OneToMany(targetEntity="Result", mappedBy="match")
+     */
+    private $results;
 
     /**
      * @var string
@@ -70,7 +79,13 @@ class Matches
      */
     private $modified;
 
-
+    /**
+     * Construct the entity
+     */
+    public function __construct()
+    {
+        $this->result = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -230,7 +245,7 @@ class Matches
      * Set modified
      *
      * @param \DateTime $modified
-     * 
+     *
      * @return Matches
      */
     public function setModified($modified)
@@ -248,5 +263,63 @@ class Matches
     public function getModified()
     {
         return $this->modified;
+    }
+
+    /**
+     * Set matchType
+     *
+     * @param \PingPong\Bundle\MatchesBundle\Entity\MatchType $matchType
+     *
+     * @return Match
+     */
+    public function setMatchType(\PingPong\Bundle\MatchesBundle\Entity\MatchType $matchType = null)
+    {
+        $this->matchType = $matchType;
+
+        return $this;
+    }
+
+    /**
+     * Get matchType
+     *
+     * @return \PingPong\Bundle\MatchesBundle\Entity\MatchType
+     */
+    public function getMatchType()
+    {
+        return $this->matchType;
+    }
+
+    /**
+     * Add result
+     *
+     * @param \PingPong\Bundle\MatchesBundle\Entity\Result $result
+     *
+     * @return Match
+     */
+    public function addResult(\PingPong\Bundle\MatchesBundle\Entity\Result $result)
+    {
+        $this->results->add($result);
+
+        return $this;
+    }
+
+    /**
+     * Remove result
+     *
+     * @param \PingPong\Bundle\MatchesBundle\Entity\Result $result
+     */
+    public function removeResult(\PingPong\Bundle\MatchesBundle\Entity\Result $result)
+    {
+        $this->results->removeElement($result);
+    }
+
+    /**
+     * Get result
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getResult()
+    {
+        return $this->result;
     }
 }

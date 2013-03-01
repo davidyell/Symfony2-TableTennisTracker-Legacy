@@ -33,13 +33,13 @@ class DepartmentsController extends Controller
             'departments' => $departments
         );
     }
-    
+
     /**
      * @param type $id
-     * 
+     *
      * @Route("/view/{id}", name="departments_view")
      * @Template()
-     * 
+     *
      * @return type
      */
     public function viewAction($id)
@@ -47,7 +47,7 @@ class DepartmentsController extends Controller
         $department = $this->getDoctrine()
                            ->getRepository('PingPongPlayerBundle:Department')
                            ->findOneBy(array('id' => $id));
-        
+
         return array(
             'department' => $department
         );
@@ -56,24 +56,24 @@ class DepartmentsController extends Controller
     /**
      * @param type $id
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * 
+     *
      * @Route("/edit/{id}", name="departments_edit")
      * @Template()
-     * 
+     *
      * @return type
      */
-    public function editAction($id, Request $request)
+    public function editAction($id)
     {
         $department = $this->getDoctrine()
                            ->getRepository('PingPongPlayerBundle:Department')
                            ->findOneBy(array('id' => $id));
-        
+
         $form = $this->createForm(new DepartmentType(), $department);
-        
+
         return array(
             'form' => $form->createView(),
             'department' => $department
         );
     }
-    
+
 }

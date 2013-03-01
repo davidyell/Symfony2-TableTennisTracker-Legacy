@@ -1,10 +1,16 @@
 <nav>
     <ul class="nav nav-pills">
+        <li {% if 'matches' in app.request.pathinfo %}class="active"{% endif %}>
+            <a href="{{ path('matches_add') }}" title="Add new match">Add match</a>
+        </li>
         <li {% if 'players' in app.request.pathinfo %}class="active"{% endif %}>
             <a href="{{ path('players_index') }}" title="Players">Players</a>
         </li>
         <li {% if 'departments' in app.request.pathinfo %}class="active"{% endif %}>
             <a href="{{ path('departments') }}" title="Departments">Departments</a>
+        </li>
+        <li {% if 'matches' in app.request.pathinfo %}class="active"{% endif %}>
+            <a href="{{ path('matches') }}" title="Matches">Matches</a>
         </li>
     </ul>
 </nav>
