@@ -24,7 +24,12 @@ class MatchType extends AbstractType
                 'property' => 'name'
             )
         )
-        ->add('result', 'collection', array('type' => new ResultType()))
+        ->add('results', 'collection', array(
+                'type' => new ResultType(),
+                'allow_add' => true,
+                'by_reference' => false
+            )
+        )
         ->add('notes');
     }
 

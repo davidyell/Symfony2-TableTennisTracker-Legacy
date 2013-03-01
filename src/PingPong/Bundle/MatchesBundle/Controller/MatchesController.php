@@ -52,10 +52,10 @@ class MatchesController extends Controller
     public function addAction()
     {
         $match = new Match();
-        $matchForm = $this->createForm(new MatchType(), $match);
+        $form = $this->createForm(new MatchType(), $match);
 
         return array(
-            'matchForm' => $matchForm->createView(),
+            'form' => $form->createView(),
         );
     }
 }

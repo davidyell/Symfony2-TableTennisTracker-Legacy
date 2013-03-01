@@ -2,5 +2,13 @@
 
 {% block content %}
     <h2>Add match</h2>
-    {{ form_widget(matchForm) }}
+    {{ form_widget(form) }}
+    <ul class="results" data-prototype="{{ form_widget(form.results.vars.prototype)|e }}">
+
+    </ul>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/pingpongmatches/js/matches_bundle.js') }}"></script>
 {% endblock %}

@@ -318,8 +318,8 @@ class Match
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getResult()
+    public function getResults()
     {
-        return $this->result;
+        return $this->results;
     }
 }
