@@ -4,6 +4,7 @@ namespace PingPong\Bundle\PlayerBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use PingPong\Bundle\PlayerBundle\Entity\Department;
@@ -11,12 +12,15 @@ use PingPong\Bundle\PlayerBundle\Form\DepartmentType;
 
 /**
  * Department controller.
+ *
+ * @Route("/departments")
  */
 class DepartmentsController extends Controller
 {
     /**
      * Lists all Department entities.
      *
+     * @Route("/", name="departments")
      * @Template()
      */
     public function indexAction()
@@ -33,6 +37,7 @@ class DepartmentsController extends Controller
     /**
      * @param type $id
      * 
+     * @Route("/view/{id}", name="departments_view")
      * @Template()
      * 
      * @return type
@@ -52,6 +57,7 @@ class DepartmentsController extends Controller
      * @param type $id
      * @param \Symfony\Component\HttpFoundation\Request $request
      * 
+     * @Route("/edit/{id}", name="departments_edit")
      * @Template()
      * 
      * @return type
