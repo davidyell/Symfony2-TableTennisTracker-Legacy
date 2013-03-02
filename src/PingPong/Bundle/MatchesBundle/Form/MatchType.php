@@ -14,20 +14,20 @@ class MatchType extends AbstractType
     /**
      * Create the form fields
      *
-     * @param \Symfony\Component\Form\FormBuilderInterface $builder
-     * @param array $options
+     * @param FormBuilderInterface $builder
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('matchType', 'entity', array(
                 'class' => 'PingPongMatchesBundle:MatchType',
-                'property' => 'name'
+                'property' => 'name',
             )
         )
         ->add('results', 'collection', array(
                 'type' => new ResultType(),
                 'allow_add' => true,
-                'by_reference' => false
+                'by_reference' => false,
             )
         )
         ->add('notes');

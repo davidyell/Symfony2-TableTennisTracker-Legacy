@@ -30,30 +30,30 @@ class PlayerType extends AbstractType
     /**
      * Create a form for the basic player fields
      *
-     * @param \Symfony\Component\Form\FormBuilderInterface $builder
-     * @param array $options
+     * @param FormBuilderInterface $builder
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         parent::buildForm($builder, $options);
-        
+
         $builder->add('firstName', 'text')
-            ->add('nickname', 'text', array(
+                ->add('nickname', 'text', array(
+                        'required' => false
+                    )
+                )
+                ->add('lastName', 'text')
+                ->add('email', 'text')
+                ->add('facebookId', 'text', array(
+                    'label' => 'Facebook page name or id',
                     'required' => false
+                    )
                 )
-            )
-            ->add('lastName', 'text')
-            ->add('email', 'text')
-            ->add('facebookId', 'text', array(
-                'label' => 'Facebook page name or id', 
-                'required' => false
-                )
-            )
-            ->add('department', 'entity', array(
-                'class' => 'PingPongPlayerBundle:Department',
-                'property' => 'name'
-                )
-            );
+                ->add('department', 'entity', array(
+                    'class' => 'PingPongPlayerBundle:Department',
+                    'property' => 'name'
+                    )
+                );
     }
 
     /**

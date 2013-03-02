@@ -22,6 +22,8 @@ class DepartmentsController extends Controller
      *
      * @Route("/", name="departments")
      * @Template()
+     *
+     * @return array
      */
     public function indexAction()
     {
@@ -55,7 +57,6 @@ class DepartmentsController extends Controller
 
     /**
      * @param type $id
-     * @param \Symfony\Component\HttpFoundation\Request $request
      *
      * @Route("/edit/{id}", name="departments_edit")
      * @Template()
@@ -69,6 +70,8 @@ class DepartmentsController extends Controller
                            ->findOneBy(array('id' => $id));
 
         $form = $this->createForm(new DepartmentType(), $department);
+
+        // TODO: Finish this method off
 
         return array(
             'form' => $form->createView(),

@@ -7,7 +7,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use PingPong\Bundle\PlayerBundle\Form\PlayerType;
-
 use PingPong\Bundle\PlayerBundle\Entity\Player;
 
 /**
@@ -33,12 +32,14 @@ class PlayersController extends Controller
     }
 
     /**
+     * @param Request $request The http request
+     *
      * @Route("/add", name="players_add")
      * @Template()
      *
      * @return mixed Array or Redirect
      */
-    public function addAction()
+    public function addAction(Request $request)
     {
         $form = $this->createForm(new PlayerType());
 
@@ -59,14 +60,15 @@ class PlayersController extends Controller
     }
 
     /**
-     * @param int $id The id of the record
+     * @param int     $id      The id of the record
+     * @param Request $request The http request
      *
      * @Route("/edit/{id}", name="players_edit")
      * @Template()
      *
      * @return mixed An array or a redirect url
      */
-    public function editAction($id)
+    public function editAction($id, Request $request)
     {
         $player = $this->getDoctrine()
                        ->getRepository('PingPongPlayerBundle:Player')
