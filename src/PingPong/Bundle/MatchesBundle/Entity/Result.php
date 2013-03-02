@@ -3,8 +3,7 @@
 namespace PingPong\Bundle\MatchesBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\ManyToOne;
-use Doctrine\ORM\Mapping\JoinTable;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Results
@@ -28,6 +27,8 @@ class Result
      *
      * @ORM\ManyToOne(targetEntity="Match", inversedBy="results")
      * @ORM\JoinColumn(name="match_id", referencedColumnName="id")
+     *
+     * @Assert\Valid
      */
     private $match;
 
@@ -36,13 +37,18 @@ class Result
      *
      * @ORM\ManyToOne(targetEntity="\PingPong\Bundle\PlayerBundle\Entity\Player")
      * @ORM\JoinColumn(name="player_id", referencedColumnName="id")
+     *
+     * @Assert\Valid
      */
-    private $players;
+    private $player;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="score", type="integer", nullable=true)
+     *
+     * @Assert\NotBlank()
+     * @Assert\Min(limit = "0", message = "Score must be positive")
      */
     private $score;
 
@@ -51,7 +57,7 @@ class Result
      *
      * @ORM\Column(name="result", type="string", length=255, nullable=true)
      */
-    private $result;
+    private $outcome;
 
     /**
      * @var \DateTime
@@ -67,7 +73,15 @@ class Result
      */
     private $modified;
 
-
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $now = new \DateTime();
+        $this->created = $now;
+        $this->modified = $now;
+    }
 
     /**
      * Get id
@@ -77,30 +91,6 @@ class Result
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set matchId
-     *
-     * @param integer $matchId
-     *
-     * @return MatchesPlayers
-     */
-    public function setMatchId($matchId)
-    {
-        $this->matchId = $matchId;
-
-        return $this;
-    }
-
-    /**
-     * Get matchId
-     *
-     * @return integer
-     */
-    public function getMatchId()
-    {
-        return $this->matchId;
     }
 
     /**
@@ -125,30 +115,6 @@ class Result
     public function getScore()
     {
         return $this->score;
-    }
-
-    /**
-     * Set result
-     *
-     * @param string $result
-     *
-     * @return MatchesPlayers
-     */
-    public function setResult($result)
-    {
-        $this->result = $result;
-
-        return $this;
-    }
-
-    /**
-     * Get result
-     *
-     * @return string
-     */
-    public function getResult()
-    {
-        return $this->result;
     }
 
     /**
@@ -200,51 +166,27 @@ class Result
     }
 
     /**
-     * Set matches
+     * Set player
      *
-     * @param \PingPong\Bundle\MatchesBundle\Entity\Match $matches
+     * @param \PingPong\Bundle\PlayerBundle\Entity\Player $player
      *
      * @return Result
      */
-    public function setMatches(\PingPong\Bundle\MatchesBundle\Entity\Match $matches = null)
+    public function setPlayer(\PingPong\Bundle\PlayerBundle\Entity\Player $player = null)
     {
-        $this->matches = $matches;
+        $this->player = $player;
 
         return $this;
     }
 
     /**
-     * Get matches
-     *
-     * @return \PingPong\Bundle\MatchesBundle\Entity\Match
-     */
-    public function getMatches()
-    {
-        return $this->matches;
-    }
-
-    /**
-     * Set players
-     *
-     * @param \PingPong\Bundle\MatchesBundle\Entity\Player $players
-     *
-     * @return Result
-     */
-    public function setPlayers(\PingPong\Bundle\MatchesBundle\Entity\Player $players = null)
-    {
-        $this->players = $players;
-
-        return $this;
-    }
-
-    /**
-     * Get players
+     * Get player
      *
      * @return \PingPong\Bundle\MatchesBundle\Entity\Player
      */
-    public function getPlayers()
+    public function getPlayer()
     {
-        return $this->players;
+        return $this->player;
     }
 
     /**
@@ -254,7 +196,7 @@ class Result
      *
      * @return Result
      */
-    public function setMatch(\PingPong\Bundle\MatchesBundle\Entity\Match $match = null)
+    public function setMatch(\PingPong\Bundle\MatchesBundle\Entity\Match $match)
     {
         $this->match = $match;
 
@@ -269,5 +211,29 @@ class Result
     public function getMatch()
     {
         return $this->match;
+    }
+
+    /**
+     * Set outcome
+     *
+     * @param string $outcome
+     *
+     * @return Result
+     */
+    public function setOutcome($outcome)
+    {
+        $this->outcome = $outcome;
+
+        return $this;
+    }
+
+    /**
+     * Get outcome
+     *
+     * @return string
+     */
+    public function getOutcome()
+    {
+        return $this->outcome;
     }
 }

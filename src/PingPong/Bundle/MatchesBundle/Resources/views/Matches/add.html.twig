@@ -1,11 +1,21 @@
 {% extends 'PingPongPlayerBundle::layout.html.twig' %}
 
 {% block content %}
+<div class="matches form">
     <h2>Add match</h2>
-    {{ form_widget(form) }}
-    <ul class="results" data-prototype="{{ form_widget(form.results.vars.prototype)|e }}">
+    <form action="{{ path('matches_add') }}" method="post">
+        {{ form_row(form.matchType) }}
 
-    </ul>
+        {{ form_row(form.results) }}
+
+        <div class="clearfix"><!-- blank --></div>
+
+        {{ form_row(form.notes) }}
+        {{ form_rest(form) }}
+
+        <input type="submit" value="Save" class="btn">
+    </form>
+</div>
 {% endblock %}
 
 {% block javascripts %}

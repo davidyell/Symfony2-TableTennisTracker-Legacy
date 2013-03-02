@@ -33,7 +33,7 @@ class Match
     /**
      * @var array
      *
-     * @ORM\OneToMany(targetEntity="Result", mappedBy="match")
+     * @ORM\OneToMany(targetEntity="Result", mappedBy="match", cascade={"persist"})
      */
     private $results;
 
@@ -84,7 +84,16 @@ class Match
      */
     public function __construct()
     {
-        $this->result = new ArrayCollection();
+        $this->results = new ArrayCollection();
+
+        $this->tournamentId = 0;
+        $this->tournamentMatchNum = 0;
+        $this->tournamentRound = 0;
+
+        $now = new \DateTime();
+        $this->created = $now;
+        $this->modified = $now;
+
     }
 
     /**
@@ -298,6 +307,7 @@ class Match
      */
     public function addResult(\PingPong\Bundle\MatchesBundle\Entity\Result $result)
     {
+        $result->setMatch($this);
         $this->results->add($result);
 
         return $this;
@@ -314,7 +324,7 @@ class Match
     }
 
     /**
-     * Get result
+     * Get results for this match
      *
      * @return \Doctrine\Common\Collections\Collection
      */

@@ -10,6 +10,7 @@ namespace PingPong\Bundle\MatchesBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\Request;
 use PingPong\Bundle\MatchesBundle\Entity\Match;
 use PingPong\Bundle\MatchesBundle\Entity\Result;
 use PingPong\Bundle\MatchesBundle\Form\MatchType;
@@ -44,15 +45,34 @@ class MatchesController extends Controller
     }
 
     /**
+     * @param Request $request The http request
+     *
      * @Route("/add", name="matches_add")
      * @Template()
      *
-     * @return array
+     * @return mixed
      */
-    public function addAction()
+    public function addAction(Request $request)
     {
         $match = new Match();
         $form = $this->createForm(new MatchType(), $match);
+
+        if ($request->isMethod('POST')) {
+            $form->bind($this->getRequest());
+
+            if ($form->isValid()) {
+
+                $em = $this->getDoctrine()->getEntityManager();
+                $em->persist($match);
+                $em->flush();
+
+                $this->get('session')->getFlashBag()->add('notice', 'Match saved');
+
+                return $this->redirect($this->generateUrl('matches'));
+            } else {
+                $this->get('session')->getFlashBag()->add('notice', 'Match could not be saved. Please try again');
+            }
+        }
 
         return array(
             'form' => $form->createView(),
