@@ -1,0 +1,16 @@
+/*
+    Document   : _forms
+    Created on : 01-Mar-2013, 20:08:00
+    Author     : neon
+    Description:
+        Style up forms
+*/
+
+#pingpong_bundle_matchbundle_matchtype_results{
+    & > div{
+        float: left;
+    }
+}
+label.required:after{
+    content: "*";
+}
