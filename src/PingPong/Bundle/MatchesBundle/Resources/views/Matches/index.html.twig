@@ -17,7 +17,7 @@
                 <td>{{ match.matchType.name }}</td>
                 <td>
                     {% for result in match.results %}
-                        {{ result.players }}
+                        {{ result.player }}
                     {% endfor %}
                 </td>
                 <td>{{ match.created|date('Y-m-d H:i') }}</td>

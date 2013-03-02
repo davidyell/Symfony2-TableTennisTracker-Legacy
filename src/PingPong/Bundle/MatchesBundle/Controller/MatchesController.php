@@ -33,7 +33,13 @@ class MatchesController extends Controller
     {
         $matches = $this->getDoctrine()
                         ->getRepository('PingPongMatchesBundle:Match')
-                        ->findBy(array(), array(), 20);
+                        ->findBy(
+                            array(),
+                            array(
+                                'created' => 'DESC'
+                            ),
+                            20
+                        );
 
 //        echo "<pre>";
 //        \Doctrine\Common\Util\Debug::dump($matches);
