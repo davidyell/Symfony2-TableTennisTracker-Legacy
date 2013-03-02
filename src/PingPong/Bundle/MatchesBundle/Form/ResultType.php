@@ -10,6 +10,7 @@ namespace PingPong\Bundle\MatchesBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Doctrine\ORM\EntityRepository;
 
 /**
  * Create a form to capture match results
@@ -21,12 +22,20 @@ class ResultType extends AbstractType
      *
      * @param \Symfony\Component\Form\FormBuilderInterface $builder
      * @param array                                        $options
+     *
+     * @return void
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         parent::buildForm($builder, $options);
 
-        $builder->add('players')
+        $builder->add('player', 'entity', array(
+                    'class' => 'PingPongPlayerBundle:Player',
+                    'query_builder' => function(EntityRepository $er) {
+                        return $er->createQueryBuilder('p')
+                            ->orderBy('p.firstName', 'ASC');
+                    },
+                ))
                 ->add('score');
     }
 
