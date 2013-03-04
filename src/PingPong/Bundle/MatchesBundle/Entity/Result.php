@@ -172,6 +172,7 @@ class Result
      * @param \PingPong\Bundle\PlayerBundle\Entity\Player $player
      *
      * @return Result
+     *
      */
     public function setPlayer(\PingPong\Bundle\PlayerBundle\Entity\Player $player = null)
     {

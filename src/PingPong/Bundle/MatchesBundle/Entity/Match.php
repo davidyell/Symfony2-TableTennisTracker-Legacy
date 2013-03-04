@@ -12,6 +12,10 @@ use PingPong\Bundle\MatchesBundle\Validator\Constraints as MatchAssert;
  *
  * @ORM\Table(name="matches")
  * @ORM\Entity
+ *
+ * @Assert\Callback(methods={
+ *  { "PingPong\Bundle\MatchesBundle\Validator\NarcissistValidator", "arePlayersValid" }
+ * })
  */
 class Match
 {

@@ -12,6 +12,7 @@ use Symfony\Component\Validator\ConstraintValidator;
 
 /**
  * Validates that two table tennis scores are valid
+ * 
  */
 class ValidScoreValidator extends ConstraintValidator
 {
@@ -36,7 +37,7 @@ class ValidScoreValidator extends ConstraintValidator
         }
 
         // Do the check
-        if ($this->scores() === false) {
+        if ($this->scores($this->matchScores[0], $this->matchScores[1]) === false) {
             $this->context->addViolationAt('', $constraint->message);
         }
     }
@@ -45,36 +46,39 @@ class ValidScoreValidator extends ConstraintValidator
     /**
      * Validates a pingpong score using score values saved in the model
      *
+     * @param int $score1
+     * @param int $score2
+     *
      * @return boolean
      */
-    private function scores()
+    public function scores($score1, $score2)
     {
-        if (empty($this->matchScores)) {
+        if (empty($score1) || empty($score2)) {
             return false;
         }
 
         // Scores cannot match
-        if ($this->matchScores[0] == $this->matchScores[1]) {
+        if ($score1 == $this->matchScores[1]) {
             return false;
         }
 
         // Must score 11 or more
-        if ($this->matchScores[0] < 11 && $this->matchScores[1] < 11) {
+        if ($score1 < 11 && $score2 < 11) {
             return false;
         }
 
         // If more than 11, ensure 2 point difference
-        if ($this->matchScores[0] > 11 || $this->matchScores[1] > 11) {
+        if ($score1 > 11 || $score2 > 11) {
             // Player 1 wins
-            if ($this->matchScores[0] > $this->matchScores[1]) {
+            if ($score1 > $score2) {
                 // Player 2 score must be two less than Player 1s
-                if ($this->matchScores[0] - 2 != $this->matchScores[1]) {
+                if ($score1 - 2 != $score2) {
                     return false;
                 }
             // Player 2 wins
-            } elseif ($this->matchScores[1] > $this->matchScores[0]) {
+            } elseif ($score2 > $score1) {
                 // Player 1 score must be two less than Player 2s
-                if ($this->matchScores[1] - 2 != $this->matchScores[0]) {
+                if ($score2 - 2 != $score1) {
                     return false;
                 }
             }
