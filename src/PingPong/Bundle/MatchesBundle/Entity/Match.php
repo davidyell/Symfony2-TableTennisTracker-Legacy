@@ -4,6 +4,8 @@ namespace PingPong\Bundle\MatchesBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraint as Assert;
+use PingPong\Bundle\MatchesBundle\Validator\Constraints as MatchAssert;
 
 /**
  * Matches
@@ -34,6 +36,8 @@ class Match
      * @var array
      *
      * @ORM\OneToMany(targetEntity="Result", mappedBy="match", cascade={"persist"})
+     *
+     * @MatchAssert\ValidScore
      */
     private $results;
 
