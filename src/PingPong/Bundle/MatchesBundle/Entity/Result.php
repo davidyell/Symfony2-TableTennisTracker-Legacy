@@ -49,7 +49,7 @@ class Result
      *
      * @Assert\NotBlank()
      * @Assert\Min(limit = "0", message = "Score must be positive")
-     * @Assert\Type(type="integer", message="The score {{ score }} is not a valid.")
+     * @Assert\Type(type="integer", message="The score is not valid")
      */
     private $score;
 
