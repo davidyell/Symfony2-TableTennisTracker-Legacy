@@ -307,7 +307,7 @@ class Match
      */
     public function addResult(\PingPong\Bundle\MatchesBundle\Entity\Result $result)
     {
-        $result->setMatch($this);
+        $result->setMatch($this); // TODO: Figure out how to get around this hack
         $this->results->add($result);
 
         return $this;
