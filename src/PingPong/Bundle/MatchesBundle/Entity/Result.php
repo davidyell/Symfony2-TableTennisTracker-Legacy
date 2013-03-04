@@ -48,7 +48,7 @@ class Result
      * @ORM\Column(name="score", type="integer", nullable=true)
      *
      * @Assert\NotBlank()
-     * @Assert\Min(limit = "0", message = "Score must be positive")
+     * @Assert\Range(min="0", minMessage="Score must be positve")
      * @Assert\Type(type="integer", message="The score is not valid")
      */
     private $score;
