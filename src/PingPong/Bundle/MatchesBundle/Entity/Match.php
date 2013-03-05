@@ -4,7 +4,7 @@ namespace PingPong\Bundle\MatchesBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Validator\Constraint as Assert;
+use Symfony\Component\Validator\Constraints as Assert;
 use PingPong\Bundle\MatchesBundle\Validator\Constraints as MatchAssert;
 
 /**

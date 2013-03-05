@@ -12,7 +12,7 @@ use Symfony\Component\Validator\ConstraintValidator;
 
 /**
  * Validates that two table tennis scores are valid
- * 
+ *
  */
 class ValidScoreValidator extends ConstraintValidator
 {
@@ -26,14 +26,16 @@ class ValidScoreValidator extends ConstraintValidator
     /**
      * Validate the field
      *
-     * @param type       $value
+     * @param array      $value
      * @param Constraint $constraint
      */
     public function validate($value, Constraint $constraint)
     {
         // Set the values
         foreach ($value as $item) {
-            $this->matchScores[] = $item->getScore();
+            if (is_object($item)) {
+                $this->matchScores[] = $item->getScore();
+            }
         }
 
         // Do the check

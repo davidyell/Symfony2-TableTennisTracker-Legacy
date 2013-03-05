@@ -1,6 +1,7 @@
 <?php
 /**
  * NarcissistValidator
+ * Check to make sure someone isn't playing with themselves
  *
  * @author David Yell <neon1024@gmail.com>
  */

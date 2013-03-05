@@ -3,8 +3,8 @@ $(function() {
 //  Dig out the form and add two new rows
     var collection = $('#pingpong_bundle_matchbundle_matchtype_results');
     var index = 1;
-    var player1 = $(collection).data('prototype').replace(/__name__/g, index);
-    var player2 = $(collection).data('prototype').replace(/__name__/g, index+1);
+    var player1 = $(collection).data('prototype').replace(/__name__label__/g, 'Player ' + index + ' result').replace(/__name__/g, index);
+    var player2 = $(collection).data('prototype').replace(/__name__label__/g, 'Player ' + Number(index+1) + ' result').replace(/__name__/g, index+1);
 
     if ($('#pingpong_bundle_matchbundle_matchtype_results > div').length == 0) {
         $(collection).append(player1).append(player2);
